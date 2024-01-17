@@ -9,12 +9,12 @@ import string
 import sys
 
 def generate_character():
-    characters = string.ascii_letters + string.digits + string.punctuation
+    characters = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
     t_characters = ''
     for i in characters:
         if i in 'iIl1o0O':
             continue
-        if i not in '!@#$%^&*' and i not in string.ascii_letters and i not in string.digits:
+        if i not in '!@#$%^&*' and i not in string.ascii_lowercase and i not in string.ascii_uppercase and i not in string.digits:
             continue
         t_characters = t_characters + i
     return random.choice(t_characters)
@@ -24,23 +24,25 @@ def generate_password(password_lenght, lop_num=0):
     if check_password_strength(password) is False and lop_num < 10:
         lop_num += 1
         password = generate_password(password_lenght, lop_num)
-    if check_password_strength(password) is False and lop_num == 10:
+    elif check_password_strength(password) is False and lop_num == 10:
         return '---------- try again -----------'
-    else:
-        return password
+    return password
 
 def check_password_strength(password):
-    remark_letter = False
+    remark_lowercase = False
+    remark_luppercase = False
     remark_digit = False
     remark_punctuation = False
     for i in password:
-        if i in string.ascii_letters:
-            remark_letter = True
+        if i in string.ascii_lowercase:
+            remark_lowercase = True
+        if i in string.ascii_uppercase:
+            remark_luppercase = True
         if i in string.digits:
             remark_digit = True
         if i in string.punctuation:
             remark_punctuation = True
-    if remark_letter == True and remark_digit == True and remark_punctuation == True:
+    if remark_lowercase == True and remark_luppercase == True and remark_digit == True and remark_punctuation == True:
         return True
     else:
         return False
