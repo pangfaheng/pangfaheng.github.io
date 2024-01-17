@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-# example: 
+# use:
 #   python $0 int[password_lenght] int[password_number]
+#
+# example: 
 #   ./create_password.py 16 1
 
 import random
