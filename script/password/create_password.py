@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
+# example: 
+#   python $0 int[password_lenght] int[password_number]
+
 import random
 import string
 import sys
-
-# example: 
-#   python $0 int[password_lenght] int[password_number]
 
 def generate_character():
     characters = string.ascii_letters + string.digits + string.punctuation
