@@ -11,7 +11,7 @@ sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
 sudo apt-get install -y postfix
 
 # 下载
-curl -fsSL https://packages.gitlab.cn/repository/raw/scripts/setup.sh | /bin/bash
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
 
 # 安装
 export EXTERNAL_URL="gitlab.pangfaheng.com"
