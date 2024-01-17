@@ -14,10 +14,17 @@ sudo apt-get install -y postfix
 curl -fsSL https://packages.gitlab.cn/repository/raw/scripts/setup.sh | /bin/bash
 
 # 安装
-export EXTERNAL_URL="https://gitlab.pangfaheng.com"
-export GITLAB_ROOT_PASSWORD="<strongpassword>"
+export EXTERNAL_URL="gitlab.pangfaheng.com"
+export GITLAB_ROOT_PASSWORD="Wnt#qWA4^tdW7Gk!"
 sudo apt-get install gitlab-ce
+
+# 更新存储位置
+cat >> /etc/gitlab/gitlab.rb <<EOF
+git_data_dirs({
+  "default" => {
+    "path" => "/data/gitlab-data"
+   }
+})
+EOF
+sudo gitlab-ctl reconfigure
 ```
-
-
-
