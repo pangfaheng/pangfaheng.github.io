@@ -14,7 +14,7 @@ def generate_character():
     for i in characters:
         if i in 'iIl1o0O':
             continue
-        if i not in '!@#$%^&*' and i not in string.ascii_lowercase and i not in string.ascii_uppercase and i not in string.digits:
+        if i not in '!@$%^&*' and i not in string.ascii_lowercase and i not in string.ascii_uppercase and i not in string.digits:
             continue
         t_characters = t_characters + i
     return random.choice(t_characters)
