@@ -18,10 +18,11 @@ def generate_character():
         t_characters = t_characters + i
     return random.choice(t_characters)
 
-def generate_password(password_lenght):
+def generate_password(password_lenght, lop_num=0):
     password = ''.join(generate_character() for _ in range(password_lenght))
-    if check_password_strength(password) is False:
-        generate_password(password_lenght)
+    if check_password_strength(password) is False and lop_num < 10:
+        lop_num += 1
+        generate_password(password_lenght, lop_num)
     return password
 
 def check_password_strength(password):
@@ -52,5 +53,5 @@ if __name__ in '__main__':
     password_number = get_password_number()
     password_lenght = get_password_lenght()
     for i in range(0,password_number):
-        generated_password = generate_password(password_lenght)
+        generated_password = generate_password(password_lenght, 0)
         print(generated_password)
