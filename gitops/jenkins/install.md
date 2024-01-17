@@ -14,5 +14,18 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install fontconfig openjdk-17-jre
 sudo apt-get install jenkins
+```
 
+## 更新配置
+```shell
+sudo systemctl stop jenkins
+sudo sed -i 's|/var/lib/jenkins|/data/jenkins|g' /lib/systemd/system/jenkins.service
+sudo mkdir -p /data/jenkins
+sudo chown jenkins:jenkins /data/jenkins
+sudo systemctl enable jenkins --now
+```
+
+## 查看密码及初始化
+```shell
+sudo cat /data/jenkins/secrets/initialAdminPassword
 ```
