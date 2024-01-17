@@ -1,7 +1,8 @@
-# single install
+# Single Install
 
-    参考文档: https://gitlab.cn/install/
+    参考文档: https://docs.gitlab.com/omnibus/settings/configuration.html
 
+## 下载
 ```shell
 #!/bin/sh
 
@@ -14,17 +15,25 @@ sudo apt-get install -y postfix
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
 
 # 安装
-export EXTERNAL_URL="gitlab.pangfaheng.com"
-export GITLAB_ROOT_PASSWORD="Wnt#qWA4^tdW7Gk!"
-sudo apt-get install gitlab-ce
+sudo EXTERNAL_URL="gitlab.pangfaheng.com" apt-get install gitlab-ce
 
+```
+
+## 修改存储配置
+```shell
 # 更新存储位置
-cat >> /etc/gitlab/gitlab.rb <<EOF
-git_data_dirs({
+echo 'git_data_dirs({
   "default" => {
     "path" => "/data/gitlab-data"
    }
-})
-EOF
+})'| sudo tee -a /etc/gitlab/gitlab.rb
+
 sudo gitlab-ctl reconfigure
+```
+
+## 修改密码
+```shell
+# 修改密码
+# 默认账户是root
+sudo gitlab-rake "gitlab:password:reset"
 ```
