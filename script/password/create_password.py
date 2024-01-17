@@ -2,6 +2,7 @@
 
 # example: 
 #   python $0 int[password_lenght] int[password_number]
+#   ./create_password.py 16 1
 
 import random
 import string
@@ -22,8 +23,11 @@ def generate_password(password_lenght, lop_num=0):
     password = ''.join(generate_character() for _ in range(password_lenght))
     if check_password_strength(password) is False and lop_num < 10:
         lop_num += 1
-        generate_password(password_lenght, lop_num)
-    return password
+        password = generate_password(password_lenght, lop_num)
+    if check_password_strength(password) is False and lop_num == 10:
+        return '---------- try again -----------'
+    else:
+        return password
 
 def check_password_strength(password):
     remark_letter = False
