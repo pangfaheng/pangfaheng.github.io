@@ -11,15 +11,14 @@ import string
 import sys
 
 def generate_character():
-    characters = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
-    t_characters = ''
-    for i in characters:
+    characters = ''
+    for i in string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation:
         if i in 'iIl1o0O':
             continue
-        if i not in '!@$%^&*' and i not in string.ascii_lowercase and i not in string.ascii_uppercase and i not in string.digits:
+        if i not in '!@$%^&*' and i not in string.ascii_lowercase + string.ascii_uppercase + string.digits:
             continue
-        t_characters = t_characters + i
-    return random.choice(t_characters)
+        characters = characters + i
+    return random.choice(characters)
 
 def generate_password(password_lenght, lop_num=0):
     password = ''.join(generate_character() for _ in range(password_lenght))
