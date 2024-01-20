@@ -6,7 +6,7 @@ git init
 git config user.name "username"
 git config user.email username@mail.com
 git config core.sshCommand "ssh -i ~/.ssh/id_rsa_example -F /dev/null"
-git remote add origin ssh://git@git.example.com:22/myproject/repository.git
+git remote add origin ssh://git@git.example.com:22/myproject/repository.git or git remote add origin git@git.example.com/myproject/repository.git
 git pull origin main
 ```
 
