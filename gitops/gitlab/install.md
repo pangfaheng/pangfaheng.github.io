@@ -4,16 +4,13 @@
 
 ## 下载
 ```shell
-#!/bin/sh
-
+#!/bin/bash
 # 依赖环境
 sudo apt-get update
 sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
 sudo apt-get install -y postfix
-
 # 下载
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
-
 # 安装
 sudo EXTERNAL_URL="gitlab.pangfaheng.com" apt-get install gitlab-ce
 
