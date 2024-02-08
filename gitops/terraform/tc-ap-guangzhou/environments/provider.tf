@@ -8,9 +8,9 @@ terraform {
 
   backend "cos" {
     region   = "ap-guangzhou"
-    bucket   = "bucket-for-terraform-state-1258798060"
+    bucket   = "myproject-1256008400"
     prefix   = "terraform/myproject/tc-ap-guangzhou/state"
-    endpoint = "http://cos-internal.ap-guangzhou.tencentcos.cn"
+    endpoint = "https://myproject-1256008400.cos.ap-guangzhou.myqcloud.com"
   }
 }
 
