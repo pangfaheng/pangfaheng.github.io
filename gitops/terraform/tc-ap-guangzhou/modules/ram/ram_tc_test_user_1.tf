@@ -1,4 +1,4 @@
-# 创建用户：test_user_01
+# 创建云计算账户：test_user_01
 resource "tencentcloud_cam_user" "test_user_01" {
   name                = "test_user_01"
   remark              = "test_user_01"
