@@ -6,7 +6,9 @@ source <(curl -sL https://multi.netlify.app/v2ray.sh) --zh
 systemctl edit v2ray.service
 [Service]
 Environment=V2RAY_VMESS_AEAD_FORCED=false
+
 systemctl restart v2ray.service
+
 
 v2ray.vmess.aead.forced = false
 
