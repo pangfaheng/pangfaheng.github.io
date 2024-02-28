@@ -6,15 +6,25 @@ import pytz
 
 
 class TimeFormat:
-    def __init__(self, unix_timestamp=int(time.time()), offset=None, timezone="+8"):
+    def __init__(
+        self,
+        unix_timestamp=int(time.time()),
+        offset=None,
+        timezone="+8",
+        offset_timezone_unit="hour",
+    ):
         self.unix_timestamp = unix_timestamp
-        self.offset = self.setTimezoneOffset(offset=offset, timezone=timezone)
+        self.offset = self.setTimezoneOffset(
+            offset=offset, timezone=timezone, offset_timezone_unit=offset_timezone_unit
+        )
 
-    def setTimezoneOffset(self, offset=None, timezone=None):
+    def setTimezoneOffset(self, offset=None, timezone=None, offset_timezone_unit=None):
         if offset:
             offset = offset
-        elif timezone is not None:
+        elif timezone is not None and offset_timezone_unit == "hour":
             offset = int(timezone) * 60
+        elif timezone is not None and offset_timezone_unit == "min":
+            offset = int(timezone)
         else:
             offset = self.getServerTimezoneOffset()
         return offset
