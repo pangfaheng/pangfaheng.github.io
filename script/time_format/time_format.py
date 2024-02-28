@@ -31,7 +31,7 @@ class TimeFormat:
         # 返回偏移量
         return offset_minutes
 
-    def generate_offset_utc_time(self):
+    def generateOffsetUTCtime(self):
         # 转换为 UTC 时间
         utc_time = datetime.datetime.utcfromtimestamp(self.unix_timestamp)
         # 创建带偏移量的时区对象
@@ -45,5 +45,5 @@ class TimeFormat:
 
 if __name__ == "__main__":
     utc_time = TimeFormat()
-    utc_time_with_offset = utc_time.generate_offset_utc_time()
+    utc_time_with_offset = utc_time.generateOffsetUTCtime()
     print(utc_time_with_offset)
