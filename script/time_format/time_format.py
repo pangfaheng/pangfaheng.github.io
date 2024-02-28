@@ -8,10 +8,15 @@ import pytz
 class TimeFormat:
     def __init__(self, unix_timestamp=int(time.time()), offset=None, timezone="+8"):
         self.unix_timestamp = unix_timestamp
+        self.offset = self.setOffset(offset=offset, timezone=timezone)
+
+    @staticmethod
+    def setOffset(offset=None, timezone=None):
         if offset:
-            self.offset = offset
+            offset = offset
         else:
-            self.offset = int(timezone) * 60
+            offset = int(timezone) * 60
+        return offset
 
     def generate_offset_utc_time(self):
         # 转换为 UTC 时间
