@@ -8,15 +8,28 @@ import pytz
 class TimeFormat:
     def __init__(self, unix_timestamp=int(time.time()), offset=None, timezone="+8"):
         self.unix_timestamp = unix_timestamp
-        self.offset = self.setOffset(offset=offset, timezone=timezone)
+        self.offset = self.setTimezoneOffset(offset=offset, timezone=timezone)
 
-    @staticmethod
-    def setOffset(offset=None, timezone=None):
+    def setTimezoneOffset(self, offset=None, timezone=None):
         if offset:
             offset = offset
-        else:
+        elif timezone is not None:
             offset = int(timezone) * 60
+        else:
+            offset = self.getServerTimezoneOffset()
         return offset
+
+    def getServerTimezoneOffset(self):
+        # 获取当前服务器时间
+        server_time = datetime.datetime.now(pytz.UTC)
+        # 获取服务器时区
+        local_timezone = datetime.datetime.now().astimezone().tzinfo
+        # 计算时区偏移量
+        offset = local_timezone.utcoffset(server_time)
+        # 转换为分钟
+        offset_minutes = offset.total_seconds() / 60
+        # 返回偏移量
+        return offset_minutes
 
     def generate_offset_utc_time(self):
         # 转换为 UTC 时间
