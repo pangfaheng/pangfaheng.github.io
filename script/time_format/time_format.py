@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
 
 import time
-from datetime import datetime, timedelta, timezone
+import datetime
+import pytz
 
 
 class TimeFormat:
-    def __init__(self, unix_timestamp=int(time.time()), time_zone="8"):
+    def __init__(self, unix_timestamp=int(time.time()), offset=None, timezone="+8"):
         self.unix_timestamp = unix_timestamp
-        self.time_zone = time_zone
+        if offset:
+            self.offset = offset
+        else:
+            self.offset = int(timezone) * 60
 
-    # 时间戳（秒）
-    def setTimeAsSecondUnixTimestamp(self) -> None:
-        print(self.unix_timestamp)
+    def generate_offset_utc_time(self):
+        # 转换为 UTC 时间
+        utc_time = datetime.datetime.utcfromtimestamp(self.unix_timestamp)
+        # 创建带偏移量的时区对象
+        timezone = pytz.FixedOffset(self.offset)
+        # 将 UTC 时间转换为带偏移量的时间
+        offset_time = utc_time.replace(tzinfo=pytz.UTC).astimezone(timezone)
+        # 格式化为 ISO 8601 标准时间字符串
+        iso_format = offset_time.isoformat()
+        return iso_format
 
-    # 秒（带分隔符）
-    def setTimeAsSecondAndT(self) -> None:
-        print(time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(self.unix_timestamp)))
 
-    # 秒（带分隔符、时区）
-    def setTimeAsSecondAndTZ(self) -> None:
-        print(
-            time.strftime("%Y-%m-%dT%H:%M:%S %Z", time.localtime(self.unix_timestamp))
-        )
-
-    # 日期
-    def setTimeAsDay(self) -> None:
-        print(time.strftime("%Y-%m-%d", time.localtime(self.unix_timestamp)))
+if __name__ == "__main__":
+    utc_time = TimeFormat()
+    utc_time_with_offset = utc_time.generate_offset_utc_time()
+    print(utc_time_with_offset)

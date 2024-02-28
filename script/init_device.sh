@@ -32,11 +32,12 @@ for ((i=0; i<${#unmount_disks[@]}; i++))
 do
     if [[ $i == 0 ]]
     then
-        data_path='/data'
+        data_path="/data"
     else
         data_path="/data"`expr ${i} + 1`
     fi
-    if [[ ! -e ${data_path} ]];then
+    if [[ ! -e ${data_path} ]]
+    then
         sudo mkdir -p ${data_path}
     fi
     echo "${unmount_disks[$i]}    ${data_path}   ext4    defaults    1   2"| sudo tee -a /etc/fstab
