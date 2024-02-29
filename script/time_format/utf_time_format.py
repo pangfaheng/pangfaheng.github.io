@@ -5,7 +5,7 @@ import datetime
 import pytz
 
 
-class TimeFormat:
+class UTCTimeFormat:
     def __init__(
         self,
         timestamp=int(time.time()),
@@ -69,7 +69,7 @@ class TimeFormat:
 
 
 if __name__ == "__main__":
-    utc_time = TimeFormat()
+    utc_time = UTCTimeFormat()
     utc_time_with_offset = utc_time.generate_offset_utctime()
     utc_time_with_timestamp = utc_time.remake_iso8601_to_timestamp()
     print(utc_time_with_offset, utc_time_with_timestamp)
