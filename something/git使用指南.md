@@ -1,4 +1,4 @@
-# How to clean the shit like macos`s .DS_Store out of git in terminal
+# How to clean the shit like MacOS`s .DS_Store out of git in terminal
 https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308
 
 # Git Pull
