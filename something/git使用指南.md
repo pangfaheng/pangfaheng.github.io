@@ -1,3 +1,6 @@
+# How to clean the shit of macos`s .DS_Store out to git in terminal
+https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308
+
 # Git Pull
 ```shell
 mkdir dir
