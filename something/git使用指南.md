@@ -1,3 +1,13 @@
+# How to clean the shit like MacOS`s .DS_Store out of git in terminal
+https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308
+
+```shell
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+git commit -m "Remove .DS_Store from everywhere"
+
+```
+
+
 # Git Pull
 ```shell
 mkdir dir
